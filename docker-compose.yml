@@ -1,0 +1,28 @@
+version: "2.1"
+
+services:
+  # db
+  db:
+    image: mariadb:10.2
+
+    container_name: db.fmhero-api
+
+    ports:
+      - 127.0.0.1:9306:3306
+
+    volumes:
+      - ./mariadb102_data:/var/lib/mysql
+
+    environment:
+      MYSQL_DATABASE: app_db
+      MYSQL_ROOT_PASSWORD: foobar
+
+  # Mailhog
+  mailhog:
+    image: mailhog/mailhog
+
+    container_name: mailhog.fmhero-api
+
+    ports:
+      - 127.0.0.1:9226:8025
+      - 127.0.0.1:9326:1025
